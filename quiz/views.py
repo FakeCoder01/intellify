@@ -296,4 +296,35 @@ def ques_list(request):
 def attempt_quiz(request):
     context = {}
     return render(request, 'quiz/attempt_quiz.html', context)
+
+
+
+
+
+@login_required(login_url='/student/login')
+def attempt_quiz_questions_api(request):
+    try:
+        if 'quiz_uid' in request.GET:
+            if not valid_quiz_uid(str(request.GET['quiz_uid'])):
+                return redirect('/student')  
+        else:
+            return redirect('/student')   
+
+        the_quiz =  quiz.objects.get(quiz_id=str(request.GET['quiz_uid']))
+
+        # qi_li = random.shuffle(list(the_quiz.question_list.all()))
+        qi_li = the_quiz.question_list.all()
+
+        data = []
+        for question_obj in qi_li:
+            data.append({
+                "question" : question_obj.question,
+                'question_id' : question_obj.uid,
+                'answers' : question_obj.get_answers()
+            })
+        payload = {'status' : True, 'quiz_id' : str(request.GET['quiz_uid']),'data' : data}
+        return JsonResponse(payload)
+    
+    except:
+        return HttpResponse("Something went wrong.")   
     

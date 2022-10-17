@@ -44,16 +44,11 @@
             <div class="d-flex w-100 justify-content-around">
                 <div>
                     <h4>Score : <span id="player-score"></span> / 10</h4>
-                    <h4>Question : <span id="question-number"></span>1 / 10</h4>
+                    <h4>Question : <span id="question-number"></span> / 10</h4>
                 </div>
                 <div>
                     <h4>Subject : <span id="subject-name"></span>Maths</h4>
-                    <div class="d-flex" style="font-family:monospace;">
-                        <h5 style="font-family:monospace;">Time Left:&nbsp; </h5>
-                        <!-- Display the countdown timer in an element -->
-                        <p id="demo" ></p>
-                    </div>
-                    
+                    <h4>Timer : <span id="question-number"></span> / 10</h4>
                 </div>
                 <div>
                     <button type="button" class="btn btn-dark">Back Home</button>
@@ -105,8 +100,7 @@
 
             </div>
 
-            <div class="next-button-container d-flex justify-content-between">
-                <button onclick="handlePrevQuestion()" style="cursor: not-allowed;">Prev Question</button>
+            <div class="next-button-container">
                 <button onclick="handleNextQuestion()">Next Question</button>
             </div>
 
@@ -118,36 +112,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
         crossorigin="anonymous"></script>
-    <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("Oct 23, 2022 15:37:25").getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function () {
-
-            // Get today's date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result in the element with id="demo"
-            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
-
-            // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
 </body>
 
 </html>
